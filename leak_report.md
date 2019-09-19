@@ -1,4 +1,12 @@
 # Leak report
 
-_Use this document to describe whatever memory leaks you find in `clean_whitespace.c` and how you might fix them. You should also probably remove this explanatory text._
+There was a memory leak because memory was allocated to something, but not freed up after the program was done using
+it.
+
+In our case, there was function called 'strip' that allocated memory to a variable 'cleaned'
+
+Another function called 'is_clean' called the strip function...which then passed that allocated memory to is_clean. 
+This was necessary, since is_clean used that memory for a variable called 'cleaned'...which was later used to compute
+something. After the computation, 'cleaned' was no longer needed and the memory could be freed.
+
 
